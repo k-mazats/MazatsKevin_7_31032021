@@ -1,0 +1,50 @@
+.search {
+	&__global-label {
+		position: relative;
+		&::after {
+			content: "\f002";
+			font-family: "Font Awesome 5 Free";
+			font-weight: 900;
+			font-size: 2rem;
+			line-height: 2rem;
+			width: 2rem;
+			height: 2rem;
+			position: absolute;
+			top: 0.4rem;
+			right: 1.188rem;
+		}
+	}
+	&__global-input {
+		background: #e7e7e7;
+	}
+	&__tags-wrapper {
+		margin: 1.563rem 0 0 0;
+	}
+	&__tag-name::after {
+		content: "\f057";
+		font-family: "Font Awesome 5 Free";
+		margin: 0 0 0 0.813rem;
+	}
+	&__category-wrapper {
+		margin: 1rem 0 0 0;
+		&:first-child{
+			padding-left: 0;
+		}
+	}
+	&__category-button {
+		position: relative;
+		&::after {
+			content: "\f078";
+			font-family: "Font Awesome 5 Free";
+			font-weight: 900;
+			position: absolute;
+			right: 0.813rem;
+			top: 0.5rem;
+			z-index: 999;
+		}
+	}
+	&__category-name {
+		position: relative;
+		z-index: 1;
+	}
+}

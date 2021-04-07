@@ -1,0 +1,104 @@
+.header__brand {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.25rem;
+  line-height: 2.938rem;
+  font-weight: 700;
+  color: #D04F4F;
+}
+
+.search__global-label {
+  position: relative;
+}
+
+.search__global-label::after {
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0.4rem;
+  right: 1.188rem;
+}
+
+.search__global-input {
+  background: #e7e7e7;
+}
+
+.search__tags-wrapper {
+  margin: 1.563rem 0 0 0;
+}
+
+.search__tag-name::after {
+  content: "\f057";
+  font-family: "Font Awesome 5 Free";
+  margin: 0 0 0 0.813rem;
+}
+
+.search__category-wrapper {
+  margin: 1rem 0 0 0;
+}
+
+.search__category-wrapper:first-child {
+  padding-left: 0;
+}
+
+.search__category-button {
+  position: relative;
+}
+
+.search__category-button::after {
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 0.813rem;
+  top: 0.5rem;
+  z-index: 999;
+}
+
+.search__category-name {
+  position: relative;
+  z-index: 1;
+}
+
+.recipe {
+  font-family: "Lato", sans-serif;
+  margin: 1.563rem 0;
+  background: #e7e7e7;
+  border-radius: 5px;
+}
+
+.recipe__name {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  font-weight: 400;
+}
+
+.recipe__time {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  font-weight: 700;
+}
+
+.recipe__ingredient-item {
+  font-size: 0.75rem;
+  line-height: 0.9rem;
+  background: inherit;
+}
+
+.recipe__ingredient-name {
+  font-weight: 700;
+}
+
+.recipe__ingredient-quantity {
+  font-weight: 400;
+}
+
+.recipe__description {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+}

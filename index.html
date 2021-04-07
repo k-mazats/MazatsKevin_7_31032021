@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+			integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+			crossorigin="anonymous"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" type="text/css" href="./style/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="./style/css/main.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="header row justify-content-center mt-3">
+				<div class="col-3 text-center">
+					<img
+						src="./img/logo.png"
+						alt="Logo les petit plats"
+						class="header__logo"
+					/>
+					<h1 class="header__brand">Les petits plats</h1>
+				</div>
+			</div>
+
+			<div class="row justify-content-center mt-1">
+				<div class="col p-0">
+					<form action="form-group">
+						<label class="search__global-label w-100">
+							<input
+								class="form-control form-control-lg border-0 search__global-input"
+								type="search"
+							/>
+						</label>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col p-0 search__tags-wrapper" id="searchTags">
+					<button
+						type="button"
+						class="btn btn-ingredient text-white search__tag-button"
+					>
+						<span class="search__tag-name">Ingredient</span>
+					</button>
+					<button
+						type="button"
+						class="btn btn-appliance text-white search__tag-button"
+					>
+						<span class="search__tag-name">Appareil</span>
+					</button>
+					<button
+						type="button"
+						class="btn btn-ustensil text-white search__tag-button"
+					>
+						<span class="search__tag-name">Ustensile</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-2 search__category-wrapper">
+					<button
+						class="text-white btn btn-block btn-ingredient btn-lg search__category-button"
+						type="button"
+					>
+						<div class="w-75 text-left search__category-name">Ingredient</div>
+					</button>
+				</div>
+				<div class="col-2 search__category-wrapper">
+					<button
+						class="text-white btn btn-block btn-appliance btn-lg search__category-button"
+						type="button"
+					>
+						<div class="w-75 text-left search__category-name">Appareil</div>
+					</button>
+				</div>
+				<div class="col-2 search__category-wrapper">
+					<button
+						class="text-white btn btn-block btn-ustensil btn-lg search__category-button"
+						type="button"
+					>
+						<div class="w-75 text-left search__category-name">Ustensiles</div>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col p-0 card-deck">
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 p-0">
+						<div class="card border-0 recipe">
+							<img
+								src="https://via.placeholder.com/380x178"
+								alt=""
+								class="card-img-top"
+							/>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2 class="recipe__name">Limonade de coco</h2>
+									</div>
+									<div class="col text-right"><span class="recipe__time">
+										<i class="far fa-clock"></i> 10min</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<ul class="list-group recipe__ingredients-list">
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Lait de coco: </span
+												><span class="recipe__ingredient-quantity">400ml</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Jus de citron: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name"
+													>Créme de coco: </span
+												><span class="recipe__ingredient-quantity"
+													>4 cuillères</span
+												>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Sucre: </span
+												><span class="recipe__ingredient-quantity">20g</span>
+											</li>
+											<li
+												class="list-group-item border-0 p-0 recipe__ingredient-item"
+											>
+												<span class="recipe__ingredient-name">Glaçons: </span
+												><span class="recipe__ingredient-quantity">2</span>
+											</li>
+										</ul>
+									</div>
+									<div class="col">
+										<p class="recipe__description">
+											Mettre les glaçons à votre goût dans le blender, ajouter
+											le lait, la crème de coco, le jus de 2 citrons et le
+											sucre. Mixer jusqu'à avoir la consistence désirée
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
