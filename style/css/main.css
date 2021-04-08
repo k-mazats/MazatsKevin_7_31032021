@@ -45,17 +45,113 @@
   padding-left: 0;
 }
 
-.search__category-button {
+.search__category-wrapper--open {
+  display: none;
+  position: relative;
+  margin: 1rem 15px;
+}
+
+.search__category-wrapper--open:nth-child(2) {
+  margin-left: 0;
+}
+
+.search__category-wrapper--open .search__filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search__category-wrapper--open .search__filter-head {
+  display: flex;
+  width: 100%;
+}
+
+.search__category-wrapper--open .search__filter-body {
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  z-index: 999;
+  top: 4.313rem;
+}
+
+.search__category-wrapper--open .search__filter-input {
+  width: calc(100% - 1ch - 24px);
+  height: 4.313rem;
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  color: #ffffff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search__category-wrapper--open .search__filter-input::placeholder {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search__category-wrapper--open .search__filter-btn {
+  height: 4.313rem;
+  line-height: 1.5;
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.search__category-wrapper--open .search__filter-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: max-content;
+  max-height: 30.1rem;
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.search__category-wrapper--open .search__filter-itm {
+  min-width: 13.938rem;
+  max-width: 13.938rem;
+  height: 3rem;
+  border-radius: 0;
+}
+
+.search__category-wrapper--open .search__filter-itm:last-child {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.search__category-wrapper--open .search__filter-itm:nth-child(10) {
+  border-bottom-left-radius: 5px;
+}
+
+.search__category-wrapper--open .search__filter-link {
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.search__category-btn {
+  height: 4.313rem;
+  font-size: 1.125rem;
+  line-height: 1.35rem;
   position: relative;
 }
 
-.search__category-button::after {
+.search__category-btn::after {
   content: "\f078";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
   right: 0.813rem;
-  top: 0.5rem;
+  top: 1.5rem;
   z-index: 999;
 }
 
