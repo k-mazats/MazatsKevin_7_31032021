@@ -16,7 +16,7 @@
 	&__ingredient-item {
 		font-size: 0.75rem;
 		line-height: 0.9rem;
-        background: inherit;
+		background: inherit;
 	}
 	&__ingredient-name {
 		font-weight: 700;
@@ -28,5 +28,12 @@
 		font-family: "Roboto", sans-serif;
 		font-size: 0.75rem;
 		line-height: 0.75rem;
+
+		max-height: 4.5rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 6;
+		-webkit-box-orient: vertical;
 	}
 }

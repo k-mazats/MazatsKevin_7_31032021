@@ -1,4 +1,4 @@
-export default recipes = [
+const recipes = [
 	{
 		id: 1,
 		name: "Limonade de Coco",
@@ -1773,3 +1773,4 @@ export default recipes = [
 		ustensils: ["rouleau à patisserie", "fouet"],
 	},
 ];
+export default recipes;
