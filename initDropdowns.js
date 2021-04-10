@@ -16,7 +16,6 @@ const watchDropdowns = () => {
 	const dropdowns = document.getElementsByClassName("search__category-btn");
 	for (let dropdown of dropdowns) {
 		dropdown.addEventListener("click", (event) => {
-			console.log("clic");
 			closeAllDropdowns();
 			event.currentTarget.parentElement.style.display = "none";
 			event.currentTarget.parentElement.nextElementSibling.style.display =
