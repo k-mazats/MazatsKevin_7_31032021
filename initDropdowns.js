@@ -13,28 +13,27 @@ const closeAllDropdowns = () => {
 	}
 };
 const watchDropdowns = () => {
-	document.addEventListener("DOMContentLoaded", (event) => {
-		const dropdowns = document.getElementsByClassName("search__category-btn");
-		for (let dropdown of dropdowns) {
-			dropdown.addEventListener("click", (event) => {
-				closeAllDropdowns();
-				event.currentTarget.parentElement.style.display = "none";
-				event.currentTarget.parentElement.nextElementSibling.style.display =
-					"block";
-			});
+	const dropdowns = document.getElementsByClassName("search__category-btn");
+	for (let dropdown of dropdowns) {
+		dropdown.addEventListener("click", (event) => {
+			console.log("clic");
+			closeAllDropdowns();
+			event.currentTarget.parentElement.style.display = "none";
+			event.currentTarget.parentElement.nextElementSibling.style.display =
+				"block";
+		});
 
-			dropdown.parentElement.nextElementSibling.children[0].children[0].children[1].addEventListener(
-				"click",
-				(event) => {
-					event.currentTarget.parentElement.parentElement.parentElement.style.display =
-						"none";
-					event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling.style.display =
-						"block";
-					("block");
-				}
-			);
-		}
-	});
+		dropdown.parentElement.nextElementSibling.children[0].children[0].children[1].addEventListener(
+			"click",
+			(event) => {
+				event.currentTarget.parentElement.parentElement.parentElement.style.display =
+					"none";
+				event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling.style.display =
+					"block";
+				("block");
+			}
+		);
+	}
 };
 const dropdownsSize = () => {
 	const dropdowns = document.getElementsByClassName("search__filter-list");
@@ -56,7 +55,6 @@ const dropdownsSize = () => {
 		dropdown.parentElement.parentElement.parentElement.style.maxWidth = `${dropdownWidth}rem`;
 		if (dropdownItemsCount > 30) {
 			let dropdownRowCount = Math.ceil(dropdownItemsCount / 3);
-			console.log(dropdownRowCount);
 			dropdown.style.height = `${dropdownRowCount * 3}rem`;
 		} else if (dropdownItemsCount >= 10) {
 			dropdown.style.height = "30rem";
