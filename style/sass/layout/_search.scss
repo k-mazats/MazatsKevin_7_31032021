@@ -91,6 +91,10 @@
 					border-bottom-right-radius: 5px;
 				}
 				&-itm {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					color: #ffffff;
 					min-width: 13.938rem;
 					max-width: 13.938rem;
 					height: 3rem;
@@ -105,10 +109,14 @@
 					}
 				}
 				&-link {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
 					font-size: 1.125rem;
 					line-height: 1.35rem;
 					color: #ffffff;
 					text-decoration: none;
+					
 				}
 			}
 		}

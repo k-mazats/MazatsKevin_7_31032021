@@ -11,17 +11,17 @@ const initCards = (recipes) => {
 							/>
 							<div class="card-body">
 								<div class="row">
-									<div class="col">
+									<div class="col-8">
 										<h2 class="recipe__name">${recipe.name}</h2>
 									</div>
-									<div class="col text-right">
+									<div class="col-4 text-right">
 										<span class="recipe__time">
 											<i class="far fa-clock"></i> ${recipe.time}min</span
 										>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col">
+									<div class="col-6">
 										<ul class="list-group recipe__ingredients-list">`;
 		for (let ingredient of recipe.ingredients) {
 			template += `<li class="list-group-item border-0 p-0 recipe__ingredient-item">
@@ -38,7 +38,7 @@ const initCards = (recipes) => {
 
 		template += `</ul>
 									</div>
-									<div class="col">
+									<div class="col-6">
 										<p class="recipe__description">
 											${recipe.description}
 										</p>
@@ -63,9 +63,9 @@ const fillDropdowns = (recipes) => {
 			ustensils.push(ustensil);
 		}
 	}
-	let ingredientsUnique = [...new Set(ingredients.sort())];
-	let appliancesUnique = [...new Set(appliances.sort())];
-	let ustensilsUnique = [...new Set(ustensils.sort())];
+	let ingredientsUnique = [...new Set(ingredients)];
+	let appliancesUnique = [...new Set(appliances)];
+	let ustensilsUnique = [...new Set(ustensils)];
 	let templateIngredients = "";
 	let templateAppliances = "";
 	let templateUstensils = "";

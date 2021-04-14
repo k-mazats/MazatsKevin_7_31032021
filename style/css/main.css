@@ -115,6 +115,10 @@
 }
 
 .search__category-wrapper--open .search__filter-itm {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
   min-width: 13.938rem;
   max-width: 13.938rem;
   height: 3rem;
@@ -131,6 +135,9 @@
 }
 
 .search__category-wrapper--open .search__filter-link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 1.125rem;
   line-height: 1.35rem;
   color: #ffffff;
@@ -170,6 +177,9 @@
   font-size: 1.125rem;
   line-height: 1.35rem;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recipe__time {
@@ -181,7 +191,11 @@
 .recipe__ingredient-item {
   font-size: 0.75rem;
   line-height: 0.9rem;
+  max-width: 100%;
   background: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recipe__ingredient-name {
@@ -193,12 +207,16 @@
 }
 
 .recipe__description {
-  font-family: "Roboto", sans-serif;
-  font-size: 0.75rem;
   line-height: 0.75rem;
-  max-height: 4.5rem;
+  height: 6rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   overflow: hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 8;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
 }

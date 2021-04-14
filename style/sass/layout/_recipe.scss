@@ -7,6 +7,9 @@
 		font-size: 1.125rem;
 		line-height: 1.35rem;
 		font-weight: 400;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	&__time {
 		font-size: 1.125rem;
@@ -16,7 +19,11 @@
 	&__ingredient-item {
 		font-size: 0.75rem;
 		line-height: 0.9rem;
+		max-width: 100%;
 		background: inherit;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	&__ingredient-name {
 		font-weight: 700;
@@ -25,15 +32,17 @@
 		font-weight: 400;
 	}
 	&__description {
-		font-family: "Roboto", sans-serif;
-		font-size: 0.75rem;
 		line-height: 0.75rem;
-
-		max-height: 4.5rem;
+		height: 6rem;
+		font-family: "Roboto", sans-serif;
+		font-weight: 400;
 		overflow: hidden;
-		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 6;
+		-webkit-line-clamp: 8;
+		/* autoprefixer: off */
 		-webkit-box-orient: vertical;
+		/* autoprefixer: on */
+		font-size: 0.75rem;
+		text-overflow: ellipsis;
 	}
 }
