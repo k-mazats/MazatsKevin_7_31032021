@@ -1,7 +1,7 @@
 import recipes from "./recipes.js";
 import initDropdowns from "./initDropdowns.js";
 import { fillData, fillDropdowns, fillCards } from "./fillData.js";
-import {createTag} from "./searchTags.js"
+import { createTag } from "./searchTags.js";
 
 import multiSearch from "./search.js";
 
@@ -52,13 +52,13 @@ const clickHandler = (e) => {
 		filteredRecipes = results;
 		fillData(filteredRecipes);
 		initDropdowns();
-		createTag(dropdownSearch)
+		createTag(dropdownSearch);
 		watchDropdownsClick();
 		watchDropdownsInput();
 	} else {
 		//print no result
 	}
-}
+};
 const watchDropdownsClick = () => {
 	const dropDownsValues = document.getElementsByClassName(
 		"search__filter-link"
@@ -74,36 +74,24 @@ const watchDropdownsInput = () => {
 	);
 	for (let dropDown of dropDownsInputs) {
 		dropDown.addEventListener("input", (e) => {
-			console.log(e);
-			let results = [];
-			console.log(searches.length);
-			if (!searches.length) {
-				newPass = true;
-				filteredRecipes = [...allRecipes];
-			} else {
-				newPass = false;
+			let listItems = [];
+			let category = "";
+			if (dropDown.classList.contains("bg-ingredient")) {
+				category = "bg-ingredient";
+			} else if (dropDown.classList.contains("bg-appliance")) {
+				category = "bg-appliance";
+			} else if (dropDown.classList.contains("bg-ustensil")) {
+				category = "bg-ustensil";
 			}
-			if (e.data === null) {
-				newPass = true;
-				filteredRecipes = [...allRecipes];
-				searches.pop();
-				results = multiSearch(filteredRecipes, searches, newPass);
-			} else {
-				let dropdownSearch = [
-					e.currentTarget.getAttribute("data-type"),
-					e.currentTarget.value,
-				];
-				searches.push(dropdownSearch);
-				results = multiSearch(filteredRecipes, searches, newPass);
-			}
-
-			if (results.length) {
-				filteredRecipes = results;
-				fillDropdowns(filteredRecipes);
-				watchDropdownsClick();
-				initDropdowns();
-			} else {
-				//print no result
+			listItems = document.querySelectorAll(`.${category}.search__filter-itm`);
+			for(let item of listItems) {
+				if (
+					item.children[0].innerText.toLowerCase().indexOf(
+						e.target.value.toLowerCase()
+					) === -1
+				) {
+					item.remove();
+				}
 			}
 		});
 	}
