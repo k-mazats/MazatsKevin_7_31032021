@@ -4,13 +4,18 @@ const searchRecipes = (type, inputValue, array) => {
 		? (targetProps = ["name", "ingredients", "description"])
 		: (targetProps = [type]);
 	let input = inputValue.toLowerCase();
-
 	const results = array.filter((data) => {
 		for (let prop of targetProps) {
 			let validRecipe = false;
 			if (prop === "ingredients") {
 				data.ingredients.some((elem) => {
 					return elem.ingredient.toLowerCase().indexOf(input) !== -1;
+				})
+					? (validRecipe = true)
+					: (validRecipe = false);
+			}else if (prop === "ustensil") {
+				data.ustensils.some((elem) => {
+					return elem.toLowerCase().indexOf(input) !== -1;
 				})
 					? (validRecipe = true)
 					: (validRecipe = false);
@@ -29,6 +34,7 @@ const searchRecipes = (type, inputValue, array) => {
 };
 
 const multiSearch = (array, searches, newPass) => {
+	console.log(searches);
 	let multiResults = [];
 	if (newPass == true) {
 		for (let search in searches) {
@@ -50,7 +56,7 @@ const multiSearch = (array, searches, newPass) => {
 		multiResults = searchRecipes(
 			searches[searches.length - 1][0],
 			searches[searches.length - 1][1],
-			tempArray
+			array
 		);
 	}
 	return multiResults;
