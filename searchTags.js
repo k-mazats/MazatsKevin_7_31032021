@@ -39,4 +39,7 @@ export const createTag = (tag) => {
 			elem.innerHTML = `<span class="search__tag-name">${tag[1]}</span>`;
 	}
 	container.appendChild(elem);
+    elem.addEventListener("click",() =>{
+        console.log("click")
+    })
 };
