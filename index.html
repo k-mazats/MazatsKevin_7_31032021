@@ -40,7 +40,7 @@
 						<label class="search__global-label w-100">
 							<input
 								class="form-control form-control-lg border-0 search__global-input"
-								type="search"
+								type="search" id="mainSearch"
 							/>
 						</label>
 					</form>
@@ -89,6 +89,7 @@
 								type="text"
 								placeholder="Recherche un ingredient"
 								autocomplete="off"
+								data-type="ingredients"
 							/>
 
 							<button class="btn btn-ingredient search__filter-btn">
@@ -120,6 +121,7 @@
 								type="text"
 								placeholder="Recherche un appareil"
 								autocomplete="off"
+								data-type="appliance"
 							/>
 
 							<button class="btn btn-appliance search__filter-btn">
@@ -152,6 +154,7 @@
 								type="text"
 								placeholder="Recherche un ustensile"
 								autocomplete="off"
+								data-type="ustensil"
 							/>
 
 							<button class="btn btn-ustensil search__filter-btn">
