@@ -31,6 +31,10 @@
   margin: 1.563rem 0 0 0;
 }
 
+.search__tag-button {
+  margin: 0 0.25rem 0.25rem 0;
+}
+
 .search__tag-name::after {
   content: "\f057";
   font-family: "Font Awesome 5 Free";

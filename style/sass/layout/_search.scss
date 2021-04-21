@@ -20,6 +20,9 @@
 	&__tags-wrapper {
 		margin: 1.563rem 0 0 0;
 	}
+	&__tag-button {
+		margin: 0 0.25rem 0.25rem 0;
+	}
 	&__tag-name::after {
 		content: "\f057";
 		font-family: "Font Awesome 5 Free";
