@@ -54,9 +54,17 @@ export class Cards {
 	}
 	static createAllCards(recipes) {
 		let container = document.getElementById("recipesCards");
-		for (let recipe of recipes) {
-			let recipeCard = this.createCard(recipe);
-			container.appendChild(recipeCard);
+		while (container.firstChild) {
+			container.removeChild(container.lastChild);
+		}
+		if (recipes.length) {
+			for (let recipe of recipes) {
+				let recipeCard = this.createCard(recipe);
+				container.appendChild(recipeCard);
+			}
+		} else {
+			container.innerText = `Aucune recette ne correspond à votre critère… vous pouvez
+chercher « tarte aux pommes », « poisson », etc.`;
 		}
 	}
 }
