@@ -165,6 +165,7 @@ export class SearchEngine {
 		this.newPass = true;
 		console.log(this.searches);
 		if (this.searches.length > 0) {
+			this.filteredRecipes = this.allRecipes;
 			let results = this.multiSearch(
 				this.filteredRecipes,
 				this.searches,
@@ -172,7 +173,6 @@ export class SearchEngine {
 			);
 			this.newPass = false;
 			if (!results.length) {
-				this.filteredRecipes = this.allRecipes;
 				Cards.createAllCards([]);
 				this.dropdowns.generateOptions([]);
 			} else if (
