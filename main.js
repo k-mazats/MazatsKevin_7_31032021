@@ -4,9 +4,12 @@ import { SearchEngine } from "./src/classes/SearchEngine.js";
 import recipes from "./src/datas/recipes.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-	Dropdowns.watchDropdowns();
+	;
 	Cards.createAllCards(recipes);
-    Dropdowns.generateOptions(recipes);
 	const searchEngine = new SearchEngine(recipes);
+	const dropdowns = new Dropdowns(searchEngine);
+	searchEngine.dropdowns = dropdowns;
+	dropdowns.watchDropdowns();
+	dropdowns.generateOptions(recipes);
 	searchEngine.watchSearches();
 });

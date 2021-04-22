@@ -41,7 +41,6 @@ export class SearchEngine {
 		return results;
 	}
 	multiSearch(array, searches, newPass) {
-		console.log(searches);
 		let multiResults = [];
 		if (newPass == true) {
 			for (let search in searches) {
@@ -70,7 +69,7 @@ export class SearchEngine {
 	}
 	watchSearches() {
 		this.watchMainSearch();
-        this.watchDropdownSearch();
+		this.watchDropdownSearch();
 	}
 	watchDropdownSearch() {
 		const dropdownsInputs = document.getElementsByClassName(
@@ -107,56 +106,108 @@ export class SearchEngine {
 					this.newPass
 				);
 			}
+			this.newPass = false;
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
 				Cards.createAllCards([]);
-				Dropdowns.generateOptions([]);
+				this.dropdowns.generateOptions([]);
 			} else if (
 				results.length &&
 				JSON.stringify(results) !== JSON.stringify(this.filteredRecipes)
 			) {
 				this.filteredRecipes = results;
 				Cards.createAllCards(this.filteredRecipes);
-				Dropdowns.generateOptions(this.filteredRecipes);
-				this.newPass = false;
+				this.dropdowns.generateOptions(this.filteredRecipes);
 			}
 		} else if (e.target.value.length === 2 && e.data === null) {
 			Cards.createAllCards(this.allRecipes);
-			Dropdowns.generateOptions(this.allRecipes);
+			this.dropdowns.generateOptions(this.allRecipes);
 		} else if (e.target.value.length === 0 && e.data === null) {
 			this.filteredRecipes = this.allRecipes;
 			this.searches = [];
 			this.newPass = true;
 			Cards.createAllCards(this.allRecipes);
-			Dropdowns.generateOptions(this.allRecipes);
+			this.dropdowns.generateOptions(this.allRecipes);
 		}
 	}
-	dropdownSearch(e){
-        console.log("input")
-        let listItems = [];
-				let category = "";
-                let dropdown = e.currentTarget
-				if (dropdown.classList.contains("bg-ingredient")) {
-					category = "bg-ingredient";
-				} else if (dropdown.classList.contains("bg-appliance")) {
-					category = "bg-appliance";
-				} else if (dropdown.classList.contains("bg-ustensil")) {
-					category = "bg-ustensil";
-				}
-				listItems = document.querySelectorAll(
-					`.${category}.search__filter-itm`
-				);
-				for (let item of listItems) {
-					if (
-						item.children[0].innerText
-							.toLowerCase()
-							.indexOf(e.target.value.toLowerCase()) === -1
-					) {
-						item.setAttribute("hidden",true);
-					}else{
-                        item.removeAttribute("hidden")
-                    }
-				}
-                Dropdowns.dropdownsSize()
-    }
+	dropdownSearch(e) {
+		console.log("input");
+		let listItems = [];
+		let category = "";
+		let dropdown = e.currentTarget;
+		if (dropdown.classList.contains("bg-ingredient")) {
+			category = "bg-ingredient";
+		} else if (dropdown.classList.contains("bg-appliance")) {
+			category = "bg-appliance";
+		} else if (dropdown.classList.contains("bg-ustensil")) {
+			category = "bg-ustensil";
+		}
+		listItems = document.querySelectorAll(`.${category}.search__filter-itm`);
+		for (let item of listItems) {
+			if (
+				item.children[0].innerText
+					.toLowerCase()
+					.indexOf(e.target.value.toLowerCase()) === -1
+			) {
+				item.setAttribute("hidden", true);
+			} else {
+				item.removeAttribute("hidden");
+			}
+		}
+		Dropdowns.dropdownsSize();
+	}
+	removeTag(search) {
+		const searchIndex = this.searches.findIndex(
+			(element) =>
+				element.toString().toLowerCase() === search.toString().toLowerCase()
+		);
+		this.searches.splice(searchIndex, 1);
+		this.newPass = true;
+		console.log(this.searches);
+		if (this.searches.length > 0) {
+			let results = this.multiSearch(
+				this.filteredRecipes,
+				this.searches,
+				this.newPass
+			);
+			this.newPass = false;
+			if (!results.length) {
+				this.filteredRecipes = this.allRecipes;
+				Cards.createAllCards([]);
+				this.dropdowns.generateOptions([]);
+			} else if (
+				results.length &&
+				JSON.stringify(results) !== JSON.stringify(this.filteredRecipes)
+			) {
+				this.filteredRecipes = results;
+				Cards.createAllCards(this.filteredRecipes);
+				this.dropdowns.generateOptions(this.filteredRecipes);
+			}
+		} else {
+			this.filteredRecipes = this.allRecipes;
+			Cards.createAllCards(this.filteredRecipes);
+			this.dropdowns.generateOptions(this.filteredRecipes);
+		}
+	}
+	pushTag(search) {
+		this.searches.push(search);
+		let results = this.multiSearch(
+			this.filteredRecipes,
+			this.searches,
+			this.newPass
+		);
+		this.newPass = false;
+		if (!results.length) {
+			this.filteredRecipes = this.allRecipes;
+			Cards.createAllCards([]);
+			this.dropdowns.generateOptions([]);
+		} else if (
+			results.length &&
+			JSON.stringify(results) !== JSON.stringify(this.filteredRecipes)
+		) {
+			this.filteredRecipes = results;
+			Cards.createAllCards(this.filteredRecipes);
+			this.dropdowns.generateOptions(this.filteredRecipes);
+		}
+	}
 }

@@ -1,8 +1,10 @@
 import { SearchTags } from "./SearchTags.js";
 
 export class Dropdowns {
-	constructor() {}
-	static watchDropdowns() {
+	constructor(searchEngine) {
+		this.searchEngine = searchEngine;
+	}
+	watchDropdowns() {
 		const openTriggers = [
 			document.querySelector(".btn-ingredient.search__category-btn"),
 			document.querySelector(".btn-ustensil.search__category-btn"),
@@ -27,7 +29,7 @@ export class Dropdowns {
 			);
 		}
 	}
-	static closeAllDropdowns() {
+	closeAllDropdowns() {
 		let dropdownsClosed = document.querySelectorAll(
 			".search__category-wrapper:not(.search__category-wrapper--open)"
 		);
@@ -41,7 +43,7 @@ export class Dropdowns {
 			dropdown.style.display = "none";
 		}
 	}
-	static generateOptions(recipes) {
+	generateOptions(recipes) {
 		const dropdownTriggers = [
 			document.querySelector(".btn-ingredient.search__category-btn"),
 			document.querySelector(".btn-ustensil.search__category-btn"),
@@ -87,29 +89,35 @@ export class Dropdowns {
 								</li>`;
 				templateElem.innerHTML = templateIngredients;
 				let option = ingredientsUl.appendChild(templateElem.content.firstChild);
-				option.children[0].addEventListener("click", this.selectOption);
+				option.children[0].addEventListener(
+					"click",
+					this.selectOption.bind(this)
+				);
 			}
 			for (let ustensil of ustensilsUnique) {
 				let templateElem = document.createElement("template");
 				let templateUstensils = `<li
 									class="list-group-item border-0 bg-ustensil search__filter-itm"
 								>
-									<a href="" data-type="ustensils" class="search__filter-link">${ustensil}</a>
+									<a href="" data-type="ustensil" class="search__filter-link">${ustensil}</a>
 								</li>`;
 				templateElem.innerHTML = templateUstensils;
 				let option = ustensilsUl.appendChild(templateElem.content.firstChild);
-				option.children[0].addEventListener("click", this.selectOption);
+				option.children[0].addEventListener("click", this.selectOption.bind(this));
 			}
 			for (let appliance of appliancesUnique) {
 				let templateElem = document.createElement("template");
 				let templateAppliances = `<li
 									class="list-group-item border-0 bg-appliance search__filter-itm"
 								>
-									<a href="" data-type="appliances" class="search__filter-link">${appliance}</a>
+									<a href="" data-type="appliance" class="search__filter-link">${appliance}</a>
 								</li>`;
 				templateElem.innerHTML = templateAppliances;
 				let option = appliancesUl.appendChild(templateElem.content.firstChild);
-				option.children[0].addEventListener("click", this.selectOption);
+				option.children[0].addEventListener(
+					"click",
+					this.selectOption.bind(this)
+				);
 			}
 			this.dropdownsSize();
 		} else {
@@ -118,14 +126,18 @@ export class Dropdowns {
 			}
 		}
 	}
-	static selectOption(e) {
+	selectOption(e) {
 		e.preventDefault();
-		const tag = SearchTags.createTag([
+		const tag = new SearchTags(this.searchEngine)
+		tag.createTag([
 			e.target.getAttribute("data-type"),
 			e.target.innerText,
 		]);
+		const search = [e.currentTarget.getAttribute("data-type"),e.currentTarget.innerText]
+		this.searchEngine.pushTag(search);
+		this.closeAllDropdowns();
 	}
-	static dropdownsSize() {
+	dropdownsSize() {
 		const dropdowns = document.getElementsByClassName("search__filter-list");
 
 		for (let dropdown of dropdowns) {

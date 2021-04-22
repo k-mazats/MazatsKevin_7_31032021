@@ -1,5 +1,8 @@
 export class SearchTags {
-	static createTag(tag) {
+	constructor(searchEngine) {
+		this.searchEngine = searchEngine;
+	}
+	createTag(tag) {
 		const container = document.getElementById("searchTags");
 		let elem = document.createElement("button");
 		let classList = [];
@@ -15,18 +18,20 @@ export class SearchTags {
 					elem.classList.add(className);
 				}
 				elem.setAttribute("type", "button");
+				elem.setAttribute("data-type", "ingredients");
 				elem.innerHTML = `<span class="search__tag-name">${tag[1]}</span>`;
 
 				break;
-			case "ustensils":
+			case "ustensil":
 				classList = ["btn", "btn-ustensil", "text-white", "search__tag-button"];
 				for (let className of classList) {
 					elem.classList.add(className);
 				}
 				elem.setAttribute("type", "button");
-				elem.innerHTML = `<span class="search__tag-name">${tag[1]}</span>`;
+				elem.setAttribute("data-type", "ustensil");
+				elem.innerHTML = `<span class="search__tag-name" data-type="appliance">${tag[1]}</span>`;
 				break;
-			case "appliances":
+			case "appliance":
 				classList = [
 					"btn",
 					"btn-appliance",
@@ -37,13 +42,16 @@ export class SearchTags {
 					elem.classList.add(className);
 				}
 				elem.setAttribute("type", "button");
+				elem.setAttribute("data-type","appliance");
 				elem.innerHTML = `<span class="search__tag-name">${tag[1]}</span>`;
-                break;
+				break;
 		}
 		container.appendChild(elem);
-		elem.addEventListener("click", this.removeTag);
+		elem.addEventListener("click", this.removeTag.bind(this));
 	}
-    static removeTag(e) {
-        e.currentTarget.remove()
-    }
+	removeTag(e) {
+		let search = [e.currentTarget.getAttribute("data-type"),e.currentTarget.firstChild.innerText]
+		e.currentTarget.remove()
+		this.searchEngine.removeTag(search);
+	}
 }
