@@ -6,6 +6,122 @@ export class SearchEngine {
 		this.filteredRecipes = recipes;
 		this.searches = [];
 		this.newPass = true;
+		console.time("dico")
+		this.createDictionnary(recipes)
+		console.timeEnd("dico")
+		console.log(this.dictionnary)
+	}
+	createDictionnary(recipes){
+		const recipesDict = {
+			recipesMain: {},
+			recipesIngredients: {},
+			recipesUstensils: {},
+			recipesAppliances: {},
+		};
+		for (let recipe in recipes) {
+			let recipeIngredientsArray = [];
+			let recipeUstensilsArray = [];
+			for (let ingredient of recipes[recipe].ingredients) {
+				recipeIngredientsArray.push(ingredient.ingredient);
+			}
+			for (let ustensil of recipes[recipe].ustensils) {
+				recipeUstensilsArray.push(ustensil);
+			}
+			let recipeMain =
+				recipes[recipe].name +
+				" " +
+				recipes[recipe].description +
+				" " +
+				recipeIngredientsArray.join(" ");
+			let recipeMainArray = recipeMain
+				.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+				.split(" ");
+			let recipeMainFilteredArray = recipeMainArray.filter(
+				(word) => word.length >= 3
+			);
+			for (let keyword of recipeMainFilteredArray) {
+				let keywordVariations = [];
+				for (let i = 0; i <= keyword.length; i++) {
+					for (let j = 3; j <= keyword.length; j++) {
+						keywordVariations.push(keyword.substring(i, j));
+					}
+				}
+				let finalKeywordVariations = keywordVariations.filter(
+					(word) => word.length >= 3
+				);
+				for (let keywordVariation of finalKeywordVariations) {
+					if (
+						!recipesDict.recipesMain.hasOwnProperty(
+							keywordVariation.toLowerCase()
+						)
+					) {
+						recipesDict.recipesMain[keywordVariation.toLowerCase()] = [];
+					}
+					if (
+						!recipesDict.recipesMain[keywordVariation.toLowerCase()].includes(
+							parseInt(recipe)
+						)
+					) {
+						recipesDict.recipesMain[keywordVariation.toLowerCase()].push(
+							parseInt(recipe)
+						);
+					}
+				}
+			}
+			for (let keyword of recipeUstensilsArray) {
+				if (
+					!recipesDict.recipesUstensils.hasOwnProperty(keyword.toLowerCase())
+				) {
+					recipesDict.recipesUstensils[keyword.toLowerCase()] = [];
+				}
+				if (
+					!recipesDict.recipesUstensils[keyword.toLowerCase()].includes(
+						parseInt(recipe)
+					)
+				) {
+					recipesDict.recipesUstensils[keyword.toLowerCase()].push(
+						parseInt(recipe)
+					);
+				}
+			}
+
+			if (
+				!recipesDict.recipesAppliances.hasOwnProperty(
+					recipes[recipe].appliance.toLowerCase()
+				)
+			) {
+				recipesDict.recipesAppliances[
+					recipes[recipe].appliance.toLowerCase()
+				] = [];
+			}
+			if (
+				!recipesDict.recipesAppliances[
+					recipes[recipe].appliance.toLowerCase()
+				].includes(parseInt(recipe))
+			) {
+				recipesDict.recipesAppliances[
+					recipes[recipe].appliance.toLowerCase()
+				].push(parseInt(recipe));
+			}
+
+			for (let keyword of recipeIngredientsArray) {
+				if (
+					!recipesDict.recipesIngredients.hasOwnProperty(keyword.toLowerCase())
+				) {
+					recipesDict.recipesIngredients[keyword.toLowerCase()] = [];
+				}
+				if (
+					!recipesDict.recipesIngredients[keyword.toLowerCase()].includes(
+						parseInt(recipe)
+					)
+				) {
+					recipesDict.recipesIngredients[keyword.toLowerCase()].push(
+						parseInt(recipe)
+					);
+				}
+			}
+		}
+		this.dictionnary = recipesDict;
 	}
 	searchRecipes(type, inputValue, array) {
 		let targetProps = [];
