@@ -3,15 +3,16 @@ import { Cards } from "./Cards.js";
 export class SearchEngine {
 	constructor(recipes) {
 		this.allRecipes = recipes;
-		this.filteredRecipes = recipes;
+		this.filteredRecipes = [];
+		this.filteredRecipesID = [];
 		this.searches = [];
 		this.newPass = true;
-		console.time("dico")
-		this.createDictionnary(recipes)
-		console.timeEnd("dico")
-		console.log(this.dictionnary)
+		console.time("dico");
+		this.createDictionnary(recipes);
+		console.timeEnd("dico");
+		console.log(this.dictionnary);
 	}
-	createDictionnary(recipes){
+	createDictionnary(recipes) {
 		const recipesDict = {
 			recipesMain: {},
 			recipesIngredients: {},
@@ -36,35 +37,33 @@ export class SearchEngine {
 			let recipeMainArray = recipeMain
 				.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
 				.split(" ");
-			let recipeMainFilteredArray = recipeMainArray.filter(
-				(word) => word.length >= 3
-			);
-			for (let keyword of recipeMainFilteredArray) {
+
+			for (let keyword of recipeMainArray) {
 				let keywordVariations = [];
 				for (let i = 0; i <= keyword.length; i++) {
 					for (let j = 3; j <= keyword.length; j++) {
 						keywordVariations.push(keyword.substring(i, j));
 					}
 				}
-				let finalKeywordVariations = keywordVariations.filter(
-					(word) => word.length >= 3
-				);
-				for (let keywordVariation of finalKeywordVariations) {
-					if (
-						!recipesDict.recipesMain.hasOwnProperty(
-							keywordVariation.toLowerCase()
-						)
-					) {
-						recipesDict.recipesMain[keywordVariation.toLowerCase()] = [];
-					}
-					if (
-						!recipesDict.recipesMain[keywordVariation.toLowerCase()].includes(
-							parseInt(recipe)
-						)
-					) {
-						recipesDict.recipesMain[keywordVariation.toLowerCase()].push(
-							parseInt(recipe)
-						);
+
+				for (let keywordVariation of keywordVariations) {
+					if (keywordVariation !== "") {
+						if (
+							!recipesDict.recipesMain.hasOwnProperty(
+								keywordVariation.toLowerCase()
+							)
+						) {
+							recipesDict.recipesMain[keywordVariation.toLowerCase()] = [];
+						}
+						if (
+							!recipesDict.recipesMain[keywordVariation.toLowerCase()].includes(
+								parseInt(recipe)
+							)
+						) {
+							recipesDict.recipesMain[keywordVariation.toLowerCase()].push(
+								parseInt(recipe)
+							);
+						}
 					}
 				}
 			}
@@ -123,65 +122,67 @@ export class SearchEngine {
 		}
 		this.dictionnary = recipesDict;
 	}
-	searchRecipes(type, inputValue, array) {
-		let targetProps = [];
-		type === "main"
-			? (targetProps = ["name", "ingredients", "description"])
-			: (targetProps = [type]);
-		let input = inputValue.toLowerCase();
-		const results = array.filter((data) => {
-			for (let prop of targetProps) {
-				let validRecipe = false;
-				if (prop === "ingredients") {
-					data.ingredients.some((elem) => {
-						return elem.ingredient.toLowerCase().indexOf(input) !== -1;
-					})
-						? (validRecipe = true)
-						: (validRecipe = false);
-				} else if (prop === "ustensil") {
-					data.ustensils.some((elem) => {
-						return elem.toLowerCase().indexOf(input) !== -1;
-					})
-						? (validRecipe = true)
-						: (validRecipe = false);
-				} else {
-					data[prop].toLowerCase().indexOf(input) !== -1
-						? (validRecipe = true)
-						: (validRecipe = false);
-				}
-				if (validRecipe) {
-					return true;
-				}
-			}
-		});
+	searchRecipes(type, inputValue) {
+		let target;
+		switch (type) {
+			case "appliances":
+				target = this.dictionnary.recipesAppliances;
+				break;
+			case "ingredients":
+				target = this.dictionnary.recipesIngredients;
+				break;
+			case "ustensils":
+				target = this.dictionnary.recipesUstensils;
+				break;
+			case "main":
+				target = this.dictionnary.recipesMain;
+				break;
+		}
+
+		let results = [];
+		if (target.hasOwnProperty(inputValue.toLowerCase())) {
+			results = target[inputValue.toLowerCase()];
+		}
 		return results;
 	}
-	multiSearch(array, searches, newPass) {
-		let multiResults = [];
+	multiSearch(searches, newPass) {
+		let resultsId = [];
+		let results = [];
+		let merge = [];
 		if (newPass == true) {
 			for (let search in searches) {
 				if (search == 0) {
-					multiResults = this.searchRecipes(
+					resultsId = this.searchRecipes(
 						searches[search][0],
-						searches[search][1],
-						array
+						searches[search][1]
 					);
+					this.filteredRecipesID = resultsId;
 				} else {
-					multiResults = this.searchRecipes(
+					resultsId = this.searchRecipes(
 						searches[search][0],
-						searches[search][1],
-						multiResults
+						searches[search][1]
 					);
+					merge = resultsId.filter(
+						(v) => this.filteredRecipesID.indexOf(v) > -1
+					);
+					this.filteredRecipesID = merge;
+					merge = [];
 				}
 			}
 		} else {
-			multiResults = this.searchRecipes(
+			resultsId = this.searchRecipes(
 				searches[searches.length - 1][0],
-				searches[searches.length - 1][1],
-				array
+				searches[searches.length - 1][1]
 			);
+			merge = resultsId.filter((v) => this.filteredRecipesID.indexOf(v) > -1);
+			this.filteredRecipesID = merge;
 		}
-		return multiResults;
+
+		for (let result of this.filteredRecipesID) {
+			results.push(this.allRecipes[result]);
+		}
+
+		return results;
 	}
 	watchSearches() {
 		this.watchMainSearch();
@@ -201,27 +202,17 @@ export class SearchEngine {
 			.addEventListener("input", this.mainSearch.bind(this));
 	}
 	mainSearch(e) {
-		console.table(this.filteredRecipes);
-		console.table(this.searches);
-		console.table(this.newPass);
 		if (e.target.value.length >= 3) {
 			let search = ["main", e.target.value];
 			this.searches = [];
 			this.searches.push(search);
 			let results = [];
 			if (e.data !== null) {
-				results = this.multiSearch(
-					this.filteredRecipes,
-					this.searches,
-					this.newPass
-				);
+				results = this.multiSearch(this.searches, this.newPass);
 			} else {
-				results = this.multiSearch(
-					this.allRecipes,
-					this.searches,
-					this.newPass
-				);
+				results = this.multiSearch(this.searches, this.newPass);
 			}
+			console.log(results.length);
 			this.newPass = false;
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
@@ -283,7 +274,6 @@ export class SearchEngine {
 		if (this.searches.length > 0) {
 			this.filteredRecipes = this.allRecipes;
 			let results = this.multiSearch(
-				this.filteredRecipes,
 				this.searches,
 				this.newPass
 			);
@@ -308,7 +298,6 @@ export class SearchEngine {
 	pushTag(search) {
 		this.searches.push(search);
 		let results = this.multiSearch(
-			this.filteredRecipes,
 			this.searches,
 			this.newPass
 		);
