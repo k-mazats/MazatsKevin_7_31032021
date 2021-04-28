@@ -85,13 +85,24 @@ export class SearchEngine {
 			.addEventListener("input", this.mainSearch.bind(this));
 	}
 	mainSearch(e) {
-		console.table(this.filteredRecipes);
-		console.table(this.searches);
-		console.table(this.newPass);
-		if (e.target.value.length >= 3) {
-			let search = ["main", e.target.value];
+		
+			
+		if (e.target.value.length >= 3 && e.data !== " ") {
+			let search;
 			this.searches = [];
-			this.searches.push(search);
+			if (e.target.value.indexOf(" ") === -1) {
+				search = ["main", e.target.value];
+				this.searches.push(search);
+			} else {
+				let keywords = e.target.value.split(" ");
+				for (let keyword of keywords) {
+					if (keyword.length > 1) {
+						search = ["main", keyword.trim()];
+						console.log(search);
+						this.searches.push(search);
+					}
+				}
+			}
 			let results = [];
 			if (e.data !== null) {
 				results = this.multiSearch(
