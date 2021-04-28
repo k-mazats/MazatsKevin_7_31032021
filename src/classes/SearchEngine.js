@@ -212,18 +212,16 @@ export class SearchEngine {
 				for (let keyword of keywords) {
 					if (keyword.length > 1) {
 						search = ["main", keyword.trim()];
-						console.log(search);
 						this.searches.push(search);
 					}
 				}
 			}
-			console.log(this.searches);
 			let results = [];
 			if (e.data == null) {
 				this.newPass = true;
 			}
 			results = this.multiSearch(this.searches, this.newPass);
-			
+
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
 				Cards.createAllCards([]);
@@ -284,7 +282,7 @@ export class SearchEngine {
 		if (this.searches.length > 0) {
 			this.filteredRecipes = this.allRecipes;
 			let results = this.multiSearch(this.searches, this.newPass);
-			
+
 			if (!results.length) {
 				Cards.createAllCards([]);
 				this.dropdowns.generateOptions([]);
