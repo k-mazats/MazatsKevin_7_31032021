@@ -155,6 +155,7 @@ export class SearchEngine {
 						searches[search][1]
 					);
 					this.filteredRecipesID = resultsId;
+					this.newPass = false;
 				} else {
 					resultsId = this.searchRecipes(
 						searches[search][0],
@@ -209,17 +210,20 @@ export class SearchEngine {
 			} else {
 				let keywords = e.target.value.split(" ");
 				for (let keyword of keywords) {
-					search = ["main", keyword];
-					this.searches.push(search);
+					if (keyword.length > 1) {
+						search = ["main", keyword.trim()];
+						console.log(search);
+						this.searches.push(search);
+					}
 				}
 			}
-			console.log(this.searches)
+			console.log(this.searches);
 			let results = [];
 			if (e.data == null) {
 				this.newPass = true;
 			}
 			results = this.multiSearch(this.searches, this.newPass);
-			this.newPass = false;
+			
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
 				Cards.createAllCards([]);
@@ -280,7 +284,7 @@ export class SearchEngine {
 		if (this.searches.length > 0) {
 			this.filteredRecipes = this.allRecipes;
 			let results = this.multiSearch(this.searches, this.newPass);
-			this.newPass = false;
+			
 			if (!results.length) {
 				Cards.createAllCards([]);
 				this.dropdowns.generateOptions([]);
