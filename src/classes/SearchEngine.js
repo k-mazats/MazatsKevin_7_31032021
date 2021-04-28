@@ -39,7 +39,7 @@ export class SearchEngine {
 			for (let keyword of recipeMainArray) {
 				let keywordVariations = [];
 				for (let i = 0; i <= keyword.length; i++) {
-					for (let j = 3; j <= keyword.length; j++) {
+					for (let j = 0; j <= keyword.length; j++) {
 						keywordVariations.push(keyword.substring(i, j));
 					}
 				}
@@ -155,7 +155,6 @@ export class SearchEngine {
 						searches[search][1]
 					);
 					this.filteredRecipesID = resultsId;
-					this.newPass = false;
 				} else {
 					resultsId = this.searchRecipes(
 						searches[search][0],
@@ -221,7 +220,7 @@ export class SearchEngine {
 				this.newPass = true;
 			}
 			results = this.multiSearch(this.searches, this.newPass);
-
+			this.newPass = false;
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
 				Cards.createAllCards([]);
