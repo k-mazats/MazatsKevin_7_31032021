@@ -7,9 +7,7 @@ export class SearchEngine {
 		this.filteredRecipesID = [];
 		this.searches = [];
 		this.newPass = true;
-		console.time("dico");
 		this.createDictionnary(recipes);
-		console.timeEnd("dico");
 		console.log(this.dictionnary);
 	}
 	createDictionnary(recipes) {
@@ -125,13 +123,13 @@ export class SearchEngine {
 	searchRecipes(type, inputValue) {
 		let target;
 		switch (type) {
-			case "appliances":
+			case "appliance":
 				target = this.dictionnary.recipesAppliances;
 				break;
 			case "ingredients":
 				target = this.dictionnary.recipesIngredients;
 				break;
-			case "ustensils":
+			case "ustensil":
 				target = this.dictionnary.recipesUstensils;
 				break;
 			case "main":
@@ -202,17 +200,25 @@ export class SearchEngine {
 			.addEventListener("input", this.mainSearch.bind(this));
 	}
 	mainSearch(e) {
-		if (e.target.value.length >= 3) {
-			let search = ["main", e.target.value];
+		if (e.target.value.length >= 3 && e.data !== " ") {
+			let search;
 			this.searches = [];
-			this.searches.push(search);
-			let results = [];
-			if (e.data !== null) {
-				results = this.multiSearch(this.searches, this.newPass);
+			if (e.target.value.indexOf(" ") === -1) {
+				search = ["main", e.target.value];
+				this.searches.push(search);
 			} else {
-				results = this.multiSearch(this.searches, this.newPass);
+				let keywords = e.target.value.split(" ");
+				for (let keyword of keywords) {
+					search = ["main", keyword];
+					this.searches.push(search);
+				}
 			}
-			console.log(results.length);
+			console.log(this.searches)
+			let results = [];
+			if (e.data == null) {
+				this.newPass = true;
+			}
+			results = this.multiSearch(this.searches, this.newPass);
 			this.newPass = false;
 			if (!results.length) {
 				this.filteredRecipes = this.allRecipes;
@@ -273,10 +279,7 @@ export class SearchEngine {
 		console.log(this.searches);
 		if (this.searches.length > 0) {
 			this.filteredRecipes = this.allRecipes;
-			let results = this.multiSearch(
-				this.searches,
-				this.newPass
-			);
+			let results = this.multiSearch(this.searches, this.newPass);
 			this.newPass = false;
 			if (!results.length) {
 				Cards.createAllCards([]);
@@ -297,10 +300,7 @@ export class SearchEngine {
 	}
 	pushTag(search) {
 		this.searches.push(search);
-		let results = this.multiSearch(
-			this.searches,
-			this.newPass
-		);
+		let results = this.multiSearch(this.searches, this.newPass);
 		this.newPass = false;
 		if (!results.length) {
 			this.filteredRecipes = this.allRecipes;
