@@ -41,12 +41,20 @@
   margin: 0 0 0 0.813rem;
 }
 
+@media (max-width: 991.98px) {
+  .search__categories {
+    justify-content: center;
+  }
+}
+
 .search__category-wrapper {
   margin: 1rem 0 0 0;
 }
 
-.search__category-wrapper:first-child {
-  padding-left: 0;
+@media (min-width: 992px) {
+  .search__category-wrapper:first-child {
+    padding-left: 0;
+  }
 }
 
 .search__category-wrapper--open {
@@ -63,6 +71,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: fit-content;
 }
 
 .search__category-wrapper--open .search__filter-head {
