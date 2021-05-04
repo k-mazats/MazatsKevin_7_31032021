@@ -1,7 +1,9 @@
 export class Cards {
 	static createCard(recipe) {
 		let templateElem = document.createElement("div");
-		templateElem.classList.add("col-4");
+		templateElem.classList.add("col-12");
+		templateElem.classList.add("col-sm-6");
+		templateElem.classList.add("col-lg-4");
 		templateElem.classList.add("p-0");
 
 		let template = `<div class="card border-0 recipe">

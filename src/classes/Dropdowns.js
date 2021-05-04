@@ -160,6 +160,7 @@ export class Dropdowns {
 			}
 			let dropdownWidth = dropdownColCount * 13.938;
 			dropdown.parentElement.parentElement.parentElement.style.maxWidth = `${dropdownWidth}rem`;
+			dropdown.parentElement.parentElement.parentElement.children[0].style.width = `${dropdownWidth}rem`;
 			if (dropdownItemsCount > 30) {
 				let dropdownRowCount = Math.ceil(dropdownItemsCount / 3);
 				dropdown.style.height = `${dropdownRowCount * 3}rem`;
