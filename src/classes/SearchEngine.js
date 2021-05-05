@@ -140,8 +140,13 @@ export class SearchEngine {
     }
     watchMainSearch() {
         document.getElementById("mainSearch").addEventListener("input", this.mainSearch.bind(this));
+        document
+					.getElementById("mainSearch")
+					.addEventListener("click", this.dropdowns.closeAllDropdowns);
+        
     }
     mainSearch(e) {
+        
         if (e.target.value.length >= 3 && e.data !== " ") {
             let search;
             this.removeAllTags();
