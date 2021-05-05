@@ -144,6 +144,7 @@ export class SearchEngine {
     mainSearch(e) {
         if (e.target.value.length >= 3 && e.data !== " ") {
             let search;
+            this.removeAllTags();
             this.searches = [];
             if (e.target.value.indexOf(" ") === -1) {
                 search = ["main", e.target.value];
@@ -184,7 +185,6 @@ export class SearchEngine {
         }
     }
     dropdownSearch(e) {
-        console.log("input");
         let listItems = [];
         let category = "";
         let dropdown = e.currentTarget;
@@ -209,7 +209,6 @@ export class SearchEngine {
         const searchIndex = this.searches.findIndex((element) => element.toString().toLowerCase() === search.toString().toLowerCase());
         this.searches.splice(searchIndex, 1);
         this.newPass = true;
-        console.log(this.searches);
         if (this.searches.length > 0) {
             this.filteredRecipes = this.allRecipes;
             let results = this.multiSearch(this.searches, this.newPass);
@@ -226,6 +225,18 @@ export class SearchEngine {
             this.filteredRecipes = this.allRecipes;
             Cards.createAllCards(this.filteredRecipes);
             this.dropdowns.generateOptions(this.filteredRecipes);
+        }
+    }
+    removeAllTags(){
+        console.log("ok")
+        for(let search in this.searches){
+            if(this.searches[search][0] !== "main"){
+                this.removeTag(this.searches[search]);
+            }
+        }
+        const tags = document.getElementsByClassName("search__tag-button")
+        for(let tag of tags){
+            tag.remove();
         }
     }
     pushTag(search) {
