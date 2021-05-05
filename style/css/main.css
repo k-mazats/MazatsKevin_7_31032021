@@ -87,6 +87,12 @@
   top: 4.313rem;
 }
 
+@media (max-width: 991.98px) {
+  .search__category-wrapper--open .search__filter-body {
+    position: static;
+  }
+}
+
 .search__category-wrapper--open .search__filter-input {
   width: calc(100% - 1ch - 24px);
   height: 4.313rem;
@@ -171,7 +177,7 @@
   position: absolute;
   right: 0.813rem;
   top: 1.5rem;
-  z-index: 999;
+  z-index: 998;
 }
 
 .search__category-name {
