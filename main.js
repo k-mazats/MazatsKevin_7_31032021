@@ -1,11 +1,15 @@
-import recipes from "./recipes.js";
-import initDropdowns from "./initDropdowns.js";
-import fillData from "./fillData.js";
+import { Dropdowns } from "./src/classes/Dropdowns.js";
+import { Cards } from "./src/classes/Cards.js";
+import { SearchEngine } from "./src/classes/SearchEngine.js";
+import recipes from "./src/datas/recipes.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const allRecipes = recipes;
-    let filteredRecipes = [...allRecipes];
-    fillData(filteredRecipes);
-	initDropdowns();
-	
+	;
+	Cards.createAllCards(recipes);
+	const searchEngine = new SearchEngine(recipes);
+	const dropdowns = new Dropdowns(searchEngine);
+	searchEngine.dropdowns = dropdowns;
+	dropdowns.watchDropdowns();
+	dropdowns.generateOptions(recipes);
+	searchEngine.watchSearches();
 });

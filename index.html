@@ -35,12 +35,12 @@
 			</div>
 
 			<div class="row justify-content-center mt-1">
-				<div class="col p-0">
+				<div class="col-10 col-sm-12 p-0">
 					<form action="form-group">
 						<label class="search__global-label w-100">
 							<input
 								class="form-control form-control-lg border-0 search__global-input"
-								type="search"
+								type="search" id="mainSearch"
 							/>
 						</label>
 					</form>
@@ -49,29 +49,11 @@
 
 			<div class="row">
 				<div class="col p-0 search__tags-wrapper" id="searchTags">
-					<button
-						type="button"
-						class="btn btn-ingredient text-white search__tag-button"
-					>
-						<span class="search__tag-name">Ingredient</span>
-					</button>
-					<button
-						type="button"
-						class="btn btn-appliance text-white search__tag-button"
-					>
-						<span class="search__tag-name">Appareil</span>
-					</button>
-					<button
-						type="button"
-						class="btn btn-ustensil text-white search__tag-button"
-					>
-						<span class="search__tag-name">Ustensile</span>
-					</button>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-2 search__category-wrapper">
+			<div class="row flex-wrap search__categories">
+				<div class="col-10 col-lg-2  search__category-wrapper">
 					<button
 						class="text-white btn btn-block btn-ingredient btn-lg search__category-btn"
 						type="button"
@@ -89,6 +71,7 @@
 								type="text"
 								placeholder="Recherche un ingredient"
 								autocomplete="off"
+								data-type="ingredients"
 							/>
 
 							<button class="btn btn-ingredient search__filter-btn">
@@ -102,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-2 search__category-wrapper">
+				<div class="col-10 col-lg-2 search__category-wrapper">
 					<button
 						class="text-white btn btn-block btn-appliance btn-lg search__category-btn"
 						type="button"
@@ -120,6 +103,7 @@
 								type="text"
 								placeholder="Recherche un appareil"
 								autocomplete="off"
+								data-type="appliance"
 							/>
 
 							<button class="btn btn-appliance search__filter-btn">
@@ -134,7 +118,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-2 search__category-wrapper">
+				<div class="col-10 col-lg-2  search__category-wrapper">
 					<button
 						class="text-white btn btn-block btn-ustensil btn-lg search__category-btn"
 						type="button"
@@ -152,6 +136,7 @@
 								type="text"
 								placeholder="Recherche un ustensile"
 								autocomplete="off"
+								data-type="ustensil"
 							/>
 
 							<button class="btn btn-ustensil search__filter-btn">
@@ -169,8 +154,8 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col p-0 card-deck" id="recipesCards">
+			<div class="row justify-content-center">
+				<div class="col p-0 card-deck " id="recipesCards">
 					
 				</div>
 			</div>

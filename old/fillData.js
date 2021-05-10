@@ -1,4 +1,4 @@
-const initCards = (recipes) => {
+export const fillCards = (recipes) => {
 	const container = document.getElementById("recipesCards");
 	let template = "";
 	for (let recipe of recipes) {
@@ -50,7 +50,7 @@ const initCards = (recipes) => {
 	}
 	container.innerHTML = template;
 };
-const fillDropdowns = (recipes) => {
+export const fillDropdowns = (recipes) => {
 	let ingredients = [];
 	let appliances = [];
 	let ustensils = [];
@@ -73,29 +73,29 @@ const fillDropdowns = (recipes) => {
 		templateIngredients += `<li
 									class="list-group-item border-0 bg-ingredient search__filter-itm"
 								>
-									<a href="" class="search__filter-link">${ingredient}</a>
+									<a href="" data-type="ingredients" class="search__filter-link">${ingredient}</a>
 								</li>`;
 	}
 	for (let appliance of appliancesUnique) {
 		templateAppliances += `<li
 									class="list-group-item border-0 bg-appliance search__filter-itm"
 								>
-									<a href="" class="search__filter-link">${appliance}</a>
+									<a href="" data-type="appliance" class="search__filter-link">${appliance}</a>
 								</li>`;
 	}
 	for (let ustensil of ustensilsUnique) {
 		templateUstensils += `<li
 									class="list-group-item border-0 bg-ustensil search__filter-itm"
 								>
-									<a href="" class="search__filter-link">${ustensil}</a>
+									<a href="" data-type="ustensil" class="search__filter-link">${ustensil}</a>
 								</li>`;
 	}
 	document.getElementById("ingredientsDropdown").innerHTML = templateIngredients;
 	document.getElementById("appliancesDropdown").innerHTML = templateAppliances;
 	document.getElementById("ustensilsDropdown").innerHTML = templateUstensils;
 };
-const fillData = (recipes) => {
-	initCards(recipes);
+export const fillData = (recipes) => {
+	fillCards(recipes);
 	fillDropdowns(recipes);
 };
-export default fillData;
+
