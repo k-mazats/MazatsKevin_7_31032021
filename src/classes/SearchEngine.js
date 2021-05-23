@@ -7,10 +7,7 @@ export class SearchEngine {
 		this.filteredRecipesID = [];
 		this.searches = [];
 		this.newPass = true;
-		console.time();
 		this.createDictionnary(recipes);
-		console.timeEnd();
-		console.log(this.dictionnary);
 	}
 	createDictionnary(recipes) {
 		const recipesDict = {
@@ -89,9 +86,8 @@ export class SearchEngine {
 					recipes[recipe].appliance.toLowerCase()
 				)
 			) {
-				recipesDict.recipesAppliances[
-					recipes[recipe].appliance.toLowerCase()
-				] = [];
+				recipesDict.recipesAppliances[recipes[recipe].appliance.toLowerCase()] =
+					[];
 			}
 			if (
 				!recipesDict.recipesAppliances[
