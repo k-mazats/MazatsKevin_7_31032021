@@ -1,6 +1,6 @@
 # MazatsKevin_7_31032021
 
-MazatsKevin_7_31032021 is my take on the seventh project from OpenClassroom Frontend Dev training. It focuses on algorithms, and the end goal is to implement two solutions for searching in a given array, to compare those and chose the best.
+MazatsKevin_7_31032021 is my take on the seventh project from OpenClassroom Frontend Dev training. It focuses on algorithms, and the end goal is build a recipes website with fetched content and to implement two solutions for content filtering.
 
 ## Usage
 
